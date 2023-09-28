@@ -1,25 +1,25 @@
-public class SensorTensaoAdapter extends SensorCelsius{
+public class SensorTensaoAdapter extends SensorCelsius implements ISensor{
     private ISensor sensorT;
 
-    public SensorTensaoAdapter(){
-        sensorT = new SensorTensao();
+    public SensorTensaoAdapter(ISensor sensorT){
+        this.sensorT = sensorT;
     }
 
-    private double coverteParaTensao(double temp){
-        return (double) ((temp-32)/1.8);
+    private double coverteParaCelsius(double temp){
+        return temp/10;
+    }
+
+    public double leitura() {
+        double leituraTensaoemCelsius;
+
+        leituraTensaoemCelsius = coverteParaCelsius(sensorT.leitura());
+
+        return leituraTensaoemCelsius;
     }
 
 
-    public double lerTemperatura(double sensorRead) {
-        double leituraTemperaturaTensao;
+    public void calibrarSensor(double base) {
 
-        leituraTemperaturaTensao = sensorRead *10;
-
-        return sensorT.leitura(leituraTemperaturaTensao);
-    }
-
-
-    public void calibrarSensor(double base, double sensorRead) {
-        sensorT.calibrarSensor(base,sensorRead);
+        sensorT.calibrarSensor(base*10.0);
     }
 }

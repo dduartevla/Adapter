@@ -7,13 +7,13 @@ public class SensorTensao implements ISensor{
     }
 
     @Override
-    public double leitura(double analogRead) {
-        double tensaoSaida = ((analogRead * 5000) / 1024) + calibracao;
+    public double leitura() {
+        double tensaoSaida = ((LeituraParaTeste.getInstance().getSensorRead() * 5000) / 1024) + calibracao;
         return tensaoSaida;
     }
 
     @Override
-    public void calibrarSensor(double baseCalibracao, double leituraTensao) {
-        calibracao = baseCalibracao - leituraTensao;
+    public void calibrarSensor(double baseCalibracao) {
+        this.calibracao = baseCalibracao -leitura();
     }
 }

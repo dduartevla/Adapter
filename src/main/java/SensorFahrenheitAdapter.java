@@ -1,9 +1,9 @@
-public class SensorFahrenheitAdapter extends SensorCelsius{
+public class SensorFahrenheitAdapter extends SensorCelsius implements ISensor{
 
     private ISensor sensorF;
 
-    public SensorFahrenheitAdapter(){
-        sensorF = new SensorFahrenheit();
+    public SensorFahrenheitAdapter(ISensor sensorF){
+        this.sensorF = sensorF;
     }
 
     private double coverteParaCelsius(double temp){
@@ -11,17 +11,17 @@ public class SensorFahrenheitAdapter extends SensorCelsius{
     }
 
 
-    public double lerTemperatura(double sensorRead) {
+    public double leitura() {
         double leituraTemperaturaEmCelsius;
 
-        leituraTemperaturaEmCelsius = coverteParaCelsius(sensorF.leitura(sensorRead));
+        leituraTemperaturaEmCelsius = coverteParaCelsius(sensorF.leitura());
 
         return leituraTemperaturaEmCelsius;
     }
 
 
-    public void calibrarSensor(double base, double sensorRead) {
-        sensorF.calibrarSensor(base,sensorRead);
+    public void calibrarSensor(double base) {
+        sensorF.calibrarSensor((base*1.8)+32);
     }
 
 }
