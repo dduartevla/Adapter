@@ -1,10 +1,10 @@
 public class SistemaControleTemperatura {
 
-    SensorCelsius sensorC;
-    ISensor sensorT;
-    SensorTensaoAdapter sensorTAdapter;
-    ISensor sensorF;
-    SensorFahrenheitAdapter sensorFAdapter;
+    private ISensor sensorC;
+    private ISensor sensorT;
+    private ISensor sensorTAdapter;
+    private ISensor sensorF;
+    private ISensor sensorFAdapter;
 
     public SistemaControleTemperatura(){
 
